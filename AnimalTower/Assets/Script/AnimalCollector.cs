@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class AnimalCollector : MonoBehaviour
 {
+    public GameObject GameOverTxt;
+    public GameObject spawner;
+    
+    AudioSource SE;
+    
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("hello");
+        SE= GetComponent<AudioSource>();
+        //Debug.Log("hello");
     }
 
     // Update is called once per frame
@@ -25,8 +31,13 @@ public class AnimalCollector : MonoBehaviour
             Debug.Log("GameOver");
             Debug.Log("Destroy");
             Destroy(collision.gameObject,3);
+
+            SE.Play();
+            GameOverTxt.SetActive(true);
+            //Time.timeScale = 0.0f;
+
+            spawner.GetComponent<SpawnerMovement>().gameOver = true;
         }
-            ;
 
     }
 
